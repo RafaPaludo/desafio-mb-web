@@ -1,0 +1,14 @@
+html {
+  font-family: 'IBM Plex Sans', Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  color: var(--black);
+  background: var(--primary);
+}
+
+::-moz-selection {
+  color: var(--black);
+  background: var(--primary);
+}
+
