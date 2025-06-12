@@ -1,15 +1,19 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
+const port = 3000;
 
-const port = 5000;
+const distPath = path.resolve(__dirname, '../frontend/dist');
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.redirect('/registration');
 });
 
+app.use(express.static(distPath));
+
 app.get('/registration', (req, res) => {
-  res.sendFile(`${__dirname}/index.html`)
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
 app.post('/registration', (req, res) => {
