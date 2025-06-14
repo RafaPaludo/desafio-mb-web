@@ -7,12 +7,21 @@
     <h2>{{ stepHeading }}</h2>
 
     <div class="steps-fields">
-      <component :is="steps[currentId].component" />
+      <KeepAlive>
+        <component
+          :is="steps[currentStep].component"
+          ref="stepRef"
+        />
+      </KeepAlive>
     </div>
+
+    <Alert v-if="errorMessage" icon>
+      {{ errorMessage }}
+    </Alert>
 
     <div class="actions-container">
       <Button
-        v-if="currentId"
+        v-if="currentStep"
         variant="outline"
         @click.prevent="previousStep"
       >
@@ -20,11 +29,14 @@
       </Button>
   
       <Button
+        :disabled="isStepDisabled"
         @click.prevent="nextStep"
       >
         Continuar
       </Button>
     </div>
+
+    {{ stepRef }}
   </form>
 </template>
 
@@ -35,12 +47,15 @@ import Step2PJ from '@/components/RegistrationForm/RegistrationFormSteps/Step2PJ
 import Step3Password from '@/components/RegistrationForm/RegistrationFormSteps/Step3Password.vue';
 import Step4Review from '@/components/RegistrationForm/RegistrationFormSteps/Step4Review.vue';
 import Button from '@/components/ui/Button.vue';
+import Alert from '@/components/ui/Alert.vue';
 
 import { ref, computed } from 'vue';
 import { registrationFormStore } from '@/store/registrationFormStore';
 
 const store = registrationFormStore;
-const currentId = ref(0);
+const currentStep = ref(0);
+const stepRef = ref({});
+const errorMessage = ref('')
 
 const steps = computed(() => [
   {
@@ -51,7 +66,7 @@ const steps = computed(() => [
   {
     step: 2,
     component: personTypeSelected.value === 'pf' ? Step2PF : Step2PJ,
-    heading: personTypeSelected.value === 'pf' ? "Pessoa Física" : "Pessoa Jurídica",
+    heading: personTypeSelected.value === 'pf' ? "Pessoa Física" : "Pessoa Jurídica"
   },
   {
     step: 3,
@@ -65,19 +80,24 @@ const steps = computed(() => [
   },
 ]);
 const personTypeSelected = computed(() => store.selectedPersonType.toLocaleLowerCase());
-const currentStepActive = computed(() => steps.value[currentId.value].step);
+const currentStepActive = computed(() => steps.value[currentStep.value].step);
 const totalSteps = computed(() => steps.value.length);
-const stepHeading = computed(() => steps.value[currentId.value].heading);
+const stepHeading = computed(() => steps.value[currentStep.value].heading);
+const isStepDisabled = computed(() => stepRef.value?.disabled ?? false);
 
 /**
- * Avança a etapa do formulário.
+ * Avança a etapa do formulário caso não haja erros nos inputs.
  */
-const nextStep = () => currentId.value < totalSteps.value && currentId.value++;
+const nextStep = () => {
+  errorMessage.value = "";
+  if (stepRef.value?.isValid()) currentStepActive.value < totalSteps.value && currentStep.value++;
+  else errorMessage.value = "Revise os campos e tente novamente.";
+}
 
 /**
  * Volta uma etapa no formulário.
  */
-const previousStep = () => currentId.value > 0 && currentId.value--;
+const previousStep = () => currentStep.value > 0 && currentStep.value--;
 </script>
 
 <style scoped lang="scss">
@@ -100,6 +120,10 @@ const previousStep = () => currentId.value > 0 && currentId.value--;
 .actions-container {
   display: flex;
   gap: 1rem;
+}
+
+.alert {
+  margin: 10px 0;
 }
 
 // MOBILE
