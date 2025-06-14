@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="[`btn__${props.variant}`]"
+    :class="[`btn--${props.variant}`]"
     class="btn"
   >
     <slot />
@@ -33,16 +33,23 @@ const props = defineProps({
     opacity: 0.7;
   }
   
-  &__solid {
+  &--solid {
     color: var(--white);
     background-color: var(--primary);
     border-color: var(--primary);
   }
 
-  &__outline {
+  &--outline {
     color: var(--primary);
     background-color: var(--white);
     border-color: var(--primary);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--white);
+    background-color: var(--disabled);
+    border-color: var(--disabled);
   }
 }
 </style>
