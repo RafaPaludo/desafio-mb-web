@@ -1,22 +1,22 @@
 <template>
   <Input
-    v-model="companyName"
+    v-model="store.companyName"
     label="Razão Social"
   />
 
   <Input
-    v-model="cnpj"
+    v-model="store.cnpj"
     label="CNPJ"
   />
 
   <Input
-    v-model="openingDate"
+    v-model="store.openingDate"
     label="Data de abertura"
     type="date"
   />
 
   <Input
-    v-model="phone"
+    v-model="store.companyPhone"
     label="Telefone"
   />  
 </template>
@@ -24,12 +24,9 @@
 <script setup>
 import Input from '@/components/ui/Input.vue';
 
-import { ref } from 'vue';
+import { registrationFormStore } from '@/store/registrationFormStore';
 
-const companyName = ref('');
-const cnpj = ref('');
-const openingDate = ref('');
-const phone = ref('');
+const store = registrationFormStore;
 </script>
 
 <style scoped lang="scss">

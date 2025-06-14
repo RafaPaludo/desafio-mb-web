@@ -12,14 +12,15 @@
 
     <div class="actions-container">
       <Button
-        @click.prevent
+        v-if="currentId"
         variant="outline"
+        @click.prevent="previousStep"
       >
         Voltar
       </Button>
   
       <Button
-        @click.prevent
+        @click.prevent="nextStep"
       >
         Continuar
       </Button>
@@ -36,9 +37,10 @@ import Step4Review from '@/components/RegistrationForm/RegistrationFormSteps/Ste
 import Button from '@/components/ui/Button.vue';
 
 import { ref, computed } from 'vue';
+import { registrationFormStore } from '@/store/registrationFormStore';
 
-const currentId = ref(3);
-const personType = ref('pf');
+const store = registrationFormStore;
+const currentId = ref(0);
 
 const steps = computed(() => [
   {
@@ -48,8 +50,8 @@ const steps = computed(() => [
   },
   {
     step: 2,
-    component: personType.value === 'pf' ? Step2PF : Step2PJ,
-    heading: personType.value === 'pf' ? "Pessoa Física" : "Pessoa Jurídica",
+    component: personTypeSelected.value === 'pf' ? Step2PF : Step2PJ,
+    heading: personTypeSelected.value === 'pf' ? "Pessoa Física" : "Pessoa Jurídica",
   },
   {
     step: 3,
@@ -62,10 +64,20 @@ const steps = computed(() => [
     heading: "Revise suas informações"
   },
 ]);
-
+const personTypeSelected = computed(() => store.selectedPersonType.toLocaleLowerCase());
 const currentStepActive = computed(() => steps.value[currentId.value].step);
 const totalSteps = computed(() => steps.value.length);
 const stepHeading = computed(() => steps.value[currentId.value].heading);
+
+/**
+ * Avança a etapa do formulário.
+ */
+const nextStep = () => currentId.value < totalSteps.value && currentId.value++;
+
+/**
+ * Volta uma etapa no formulário.
+ */
+const previousStep = () => currentId.value > 0 && currentId.value--;
 </script>
 
 <style scoped lang="scss">

@@ -1,22 +1,22 @@
 <template>
   <Input
-    v-model="name"
+    v-model="store.name"
     label="Nome"
   />
 
   <Input
-    v-model="cpf"
+    v-model="store.cpf"
     label="CPF"
   />
 
   <Input
-    v-model="birthday"
+    v-model="store.birthday"
     label="Data de nascimento"
     type="date"
   />
 
   <Input
-    v-model="phone"
+    v-model="store.phone"
     label="Telefone"
   />  
 </template>
@@ -24,12 +24,9 @@
 <script setup>
 import Input from '@/components/ui/Input.vue';
 
-import { ref } from 'vue';
+import { registrationFormStore } from '@/store/registrationFormStore';
 
-const name = ref('');
-const cpf = ref('');
-const birthday = ref('');
-const phone = ref('');
+const store = registrationFormStore;
 </script>
 
 <style scoped lang="scss">

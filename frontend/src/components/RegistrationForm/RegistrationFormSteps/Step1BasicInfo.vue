@@ -1,13 +1,13 @@
 <template>
   <Input
-    v-model="email"
+    v-model="store.email"
     label="Endereço de e-mail"
     type="email"
   />
 
   <RadioGroup
-    v-model="radio"
-    :items="items"
+    v-model="store.selectedPersonType"
+    :items="store.personTypes"
   />
 </template>
 
@@ -15,20 +15,9 @@
 import Input from '@/components/ui/Input.vue';
 import RadioGroup from '@/components/ui/RadioGroup.vue';
 
-import { ref } from 'vue';
+import { registrationFormStore } from '@/store/registrationFormStore';
 
-const email = ref('');
-const radio = ref('');
-const items = ref([
-  {
-    label: 'Pessoa física',
-    value: 'PF'
-  },
-  {
-    label: 'Pessoa Jurídica',
-    value: 'PJ'
-  }
-]);
+const store = registrationFormStore;
 </script>
 
 <style scoped lang="scss">

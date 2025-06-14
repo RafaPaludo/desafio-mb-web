@@ -1,6 +1,6 @@
 <template>
   <Input
-    v-model="password"
+    v-model="store.password"
     label="Sua senha"
     type="password"
   />
@@ -9,9 +9,9 @@
 <script setup>
 import Input from '@/components/ui/Input.vue';
 
-import { ref } from 'vue';
+import { registrationFormStore } from '@/store/registrationFormStore';
 
-const password = ref('');
+const store = registrationFormStore;
 </script>
 
 <style scoped lang="scss">
