@@ -1,6 +1,4 @@
 const validateUser = (body = {}) => {
-  console.log("Entrou no validator, body:::", body);
-
   const commonFields = [
     {
       property: "email",
@@ -40,7 +38,7 @@ const validateUser = (body = {}) => {
         property: "birthday",
         name: "Data de nascimento",
         typeof: "string",
-        length: 11
+        length: 10
       },
       {
         property: "phone",
@@ -61,19 +59,19 @@ const validateUser = (body = {}) => {
         property: "cnpj",
         name: "CNPJ",
         typeof: "string",
-        length: 11
+        length: 14
       },
       {
         property: "openingDate",
         name: "Data de abertura",
         typeof: "string",
-        length: 11
+        length: 10
       },
       {
         property: "companyPhone",
         name: "Telefone da empresa",
         typeof: "string",
-        length: 11
+        length: 10
       }
     ]
   };

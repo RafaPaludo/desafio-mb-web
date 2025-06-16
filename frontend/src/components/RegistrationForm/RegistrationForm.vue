@@ -1,5 +1,5 @@
 <template>
-  <form class="registration-form-container" >
+  <form class="registration-form-container">
     <div>
       Etapa <strong class="step-active">{{ currentStepActive }}</strong> de {{ totalSteps }}
     </div>
@@ -36,7 +36,6 @@
       </Button>
     </div>
 
-    {{ stepRef }}
   </form>
 </template>
 
@@ -51,6 +50,8 @@ import Alert from '@/components/ui/Alert.vue';
 
 import { ref, computed } from 'vue';
 import { registrationFormStore } from '@/store/registrationFormStore';
+import { toastStore } from '@/store/toastStore';
+import { postForm } from '@/services/api';
 
 const store = registrationFormStore;
 const currentStep = ref(0);
@@ -86,18 +87,92 @@ const stepHeading = computed(() => steps.value[currentStep.value].heading);
 const isStepDisabled = computed(() => stepRef.value?.disabled ?? false);
 
 /**
- * Avança a etapa do formulário caso não haja erros nos inputs.
- */
-const nextStep = () => {
-  errorMessage.value = "";
-  if (stepRef.value?.isValid()) currentStepActive.value < totalSteps.value && currentStep.value++;
-  else errorMessage.value = "Revise os campos e tente novamente.";
-}
-
-/**
  * Volta uma etapa no formulário.
  */
 const previousStep = () => currentStep.value > 0 && currentStep.value--;
+
+/**
+ * Avança a etapa do formulário caso não haja erros nos inputs.
+ */
+const nextStep = async () => {
+  errorMessage.value = "";
+
+  if (!stepRef.value?.isValid()) {
+    errorMessage.value = "Revise os campos e tente novamente.";
+    return;
+  }
+
+  if (currentStepActive.value < totalSteps.value) {
+    currentStep.value++
+    return;
+  }
+
+  postFormData(store, personTypeSelected.value);
+}
+
+/**
+ * 
+ * @param store 
+ * @param personTypeSelected 
+ */
+const postFormData = async (store, personTypeSelected) => {
+  const payload = mountFormPayload(store, personTypeSelected);
+
+  const { success, message } = await postForm(payload);
+
+  if (success) {
+    currentStep.value = 0;
+    store.email = '';
+    store.name = '';
+    store.cpf = '';
+    store.birthday = '';
+    store.phone = '';
+    store.companyName = '';
+    store.cnpj = '';
+    store.openingDate = '';
+    store.password = '';
+    store.selectedPersonType = '';
+  }
+  
+  toastStore.title = success ? "✔️ Sucesso!" : "❌ Erro!";
+  toastStore.message = message;
+  toastStore.active = true;
+}
+
+/**
+ * 
+ * @param store 
+ * @param personTypeSelected 
+ */
+const mountFormPayload = (store = {}, personTypeSelected = '') => {
+  const commonFields = {
+    email: store.email,
+    password: store.password,
+    selectedPersonType: store.selectedPersonType
+  };
+
+  const fieldOptions = {
+    pf: {
+      ...commonFields,
+      name: store.name,
+      cpf: store.cpf,
+      birthday: store.birthday,
+      phone: store.phone,
+      password: store.password,
+      selectedPersonType: store.selectedPersonType
+    },
+    pj: {
+      ...commonFields,
+      companyName: store.companyName,
+      cnpj: store.cnpj,
+      openingDate: store.openingDate,
+      companyPhone: store.companyPhone,
+      
+    }
+  };
+
+  return fieldOptions[personTypeSelected?.toLocaleLowerCase()] || {};
+}
 </script>
 
 <style scoped lang="scss">

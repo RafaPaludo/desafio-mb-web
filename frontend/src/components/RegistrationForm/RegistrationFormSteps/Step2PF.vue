@@ -2,6 +2,7 @@
   <Input
     v-model="store.name"
     label="Nome"
+    ref="nameRef"
   />
 
   <Input
@@ -38,6 +39,7 @@ import { useInputRules } from '@/composables/inputRules';
 const { required, validCpf, validPhone, validBirthday } = useInputRules();
 
 const store = registrationFormStore;
+const nameRef = ref({});
 const cpfRef = ref({});
 const birthdayRef = ref({});
 const phoneRef = ref({});
@@ -45,7 +47,7 @@ const phoneRef = ref({});
 const disabled = computed(() => !store.name || !store.cpf || !store.birthday || !store.phone);
 
 const isValid = () => {
-  if (cpfRef.value?.error || birthdayRef.value?.error || phoneRef.value?.error) return false;
+  if (nameRef.value?.error || cpfRef.value?.error || birthdayRef.value?.error || phoneRef.value?.error) return false;
   else return true;
 }
 

@@ -6,9 +6,9 @@
     ref="emailRef"
     :rules="[required, validEmail]"
   />
-  <Step2PF v-if="personTypeSelected === 'pf'" />
-  <Step2PJ v-if="personTypeSelected === 'pj'" />
-  <Step3Password />
+  <Step2PF v-if="personTypeSelected === 'pf'" ref="pfRef" />
+  <Step2PJ v-if="personTypeSelected === 'pj'" ref="pjRef" />
+  <Step3Password ref="passwordRef" />
 </template>
 
 <script setup>
@@ -25,10 +25,23 @@ const { required, validEmail } = useInputRules();
 
 const store = registrationFormStore;
 const emailRef = ref({});
+const pfRef = ref({});
+const pjRef = ref({});
+const passwordRef = ref({});
 
 const personTypeSelected = computed(() => store.selectedPersonType.toLocaleLowerCase());
 
-const isValid = () => emailRef.value?.error ? false : true;
+const isValid = () => {
+  const personTypeRef = personTypeSelected.value === 'pf' ? pfRef : pjRef;
+  
+  if (
+    emailRef.value?.error ||
+    !passwordRef.value.isValid() ||
+    !personTypeRef.value.isValid()
+  ) return false
+
+  return true;
+}
 
 defineExpose({
   isValid
