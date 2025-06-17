@@ -59,6 +59,7 @@ O projeto é dividido em duas partes:
 
 - **Backend**  
   Criado com **Node.js** e **Express**. Expõe uma API para receber os dados e também serve os arquivos estáticos do frontend.
+  Instruções específicas estão no [`server/README.md`](./server/README.md)
 
 ---
 
@@ -82,22 +83,6 @@ O projeto é dividido em duas partes:
 4. Acesse a aplicação:
      ```bash
      http://localhost:3000
-
-## Tecnologias utilizadas
-
-### Frontend
-
-Vuejs 3
-
-Vite 
-
-Sass
-
-### Backend 
-
-Node.js
-
-Express
 
 ## API - Rotas disponíveis
 

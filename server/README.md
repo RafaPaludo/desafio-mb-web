@@ -32,11 +32,6 @@ Este é o backend da aplicação do desafio técnico do Mercado Bitcoin. Desenvo
    ```bash
    http://localhost:3000
 
-
-> O servidor irá:
-> Servir o frontend em /
-> Processar o formulário via POST /
-
 ## API - Rotas disponíveis
 
 | Método | Rota | Descrição | 
