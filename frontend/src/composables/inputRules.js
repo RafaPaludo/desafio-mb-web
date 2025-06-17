@@ -10,10 +10,16 @@ export function useInputRules () {
   const validCpf = (value) => !cpfRegex.test(value) ? "CPF inválido." : null;
   const validCnpj = (value) => !cnpjRegex.test(value) ? "CNPJ inválido." : null;
   const validPhone = (value) => !phoneRegex.test(value) ? "Telefone inválido." : null;
-  const validBirthday = (value) => !value ? "Precisa ser menor que a data atual." : null;
   const validCompanyPhone = (value) => !companyPhoneRegex.test(value) ? "Telefone inválido." : null;
-  const validOpeningDate = (value) => !value ? "Precisa ser menor que a data atual." : null;
   const validPassword = (value) => value.length < 8 ? "Senha deve conter ao menos 8 caracteres." : null;
+
+  const validBirthday = (value) => {
+    const dateNow = new Date().setHours(0,0,0,0) - (3 * 60 * 60* 1000); // Data da virada de hoje, menos as 3hrs de UTC.
+    const dateValue = new Date(value).getTime();
+
+    return dateValue >= dateNow ? "Precisa ser menor que a data atual." : null;
+  }
+  const validOpeningDate = validBirthday;
   
   return {
     required,
