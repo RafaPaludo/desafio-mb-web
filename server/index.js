@@ -32,5 +32,5 @@ app.post('/registration', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Escutando na porta ${port}`);
+  console.log(`Servidor rodando na porta ${port}`);
 });
