@@ -24,7 +24,7 @@ import { toastStore } from '@/store/toastStore';
 const store = toastStore;
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .toast-container {
   min-width: 300px;
   position: absolute;

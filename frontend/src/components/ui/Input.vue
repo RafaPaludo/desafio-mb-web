@@ -143,7 +143,7 @@ defineExpose({
 onBeforeUnmount(() => passwordVisible.value = false);
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .input-wrapper {
   display: flex;
   flex-direction: column;

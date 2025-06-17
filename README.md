@@ -19,6 +19,36 @@ Todos os requisitos do desafio podem ser consultados [neste link](https://github
 
 ---
 
+## Decisões de implementação
+
+- Mantive os estilos globais em uma pasta separada e optei por utilizar estilos locais próximos ao código, dentro dos próprios componentes. Nomenclatura inspirada na metodologia [BEM](https://getbem.com/).
+
+- Criei elementos de UI em uma pasta separada para facilitar a reutilização.
+
+- Segui o [guia de estilos](https://vuejs.org/style-guide/) para estruturação dos componentes.
+
+- Backend simplificado, com validações básicas e sem salvamento dos dados, conforme especificado no desafio.
+
+- Adicionei algumas funcionalidades no formulário para guiar melhor usuário:
+  1. Máscara nos campos de input (como CPF, CNPJ, telefone);
+  2. Uso de placeholder;
+  3. Ícone para mostrar/esconder a senha;
+  4. Botão "Continuar" desabilitado enquanto houver campos obrigatórios não preenchidos.
+
+- Como não consegui estilizar corretamente o componente de input[type="data"] nativo, optei por utilizar um campo texto normal. 
+
+## Possíveis melhorias
+
+- Validação mais robusta no backend.
+
+- Adicionar regras mais específicas nos campos de input de acordo com regra de negócio. Exemplo: validar se cpf / cnpj existe.
+
+- Criar um componente de data mais complexo e acessível, baseado ou não no input[type="date"] nativo.
+
+- Adicionar transições mais fluídas, para melhorar a UX, como durante a exibição do componente de Toast e trocas de etapa.
+
+---
+
 ## Estrutura do projeto
 
 O projeto é dividido em duas partes:

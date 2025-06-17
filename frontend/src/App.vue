@@ -10,7 +10,7 @@ import PageRegistration from '@/views/PageRegistration.vue';
 import Toast from '@/components/ui/Toast.vue';
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 main {
   width: 100%;
   height: 100%;

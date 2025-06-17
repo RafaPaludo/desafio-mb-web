@@ -26,7 +26,7 @@ const props = defineProps({
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .alert {
   padding: 0.25rem;
   border-radius: 0.5rem;

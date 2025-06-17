@@ -19,7 +19,7 @@ const props = defineProps({
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .btn {
   cursor: pointer;
   border: 1px solid;
