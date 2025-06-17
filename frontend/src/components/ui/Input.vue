@@ -16,7 +16,7 @@
         :placeholder="placeholder"
         :required="required"
         class="input-element"
-        @input="addMask($event)"
+        @input="[addMask($event), checkRules(props.rules)]"
         @focusout="checkRules(props.rules)"
       />
       

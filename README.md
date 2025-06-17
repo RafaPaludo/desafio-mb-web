@@ -2,7 +2,6 @@
 
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)](https://nodejs.org/)
 [![Vue.js](https://img.shields.io/badge/Vue.js-3.x-42b883?logo=vue.js)](https://vuejs.org/)
-[![License](https://img.shields.io/badge/license-MIT-blue)](#)
 
 ## Preview
 
@@ -37,7 +36,7 @@ O projeto é dividido em duas partes:
 
 ### Pré-requisitos
 
-- [Node.js](https://nodejs.org/) instalado na máquina.
+- [Node.js](https://nodejs.org/) instalado na máquina. Versão >= 18.
 
 ### Passo a passo
 
