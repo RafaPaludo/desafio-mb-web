@@ -20,7 +20,7 @@
     ref="openingdateRef"
     label="Data de abertura"
     placeholder="00/00/0000"
-    type="date"
+    mask="xx/xx/xxxx"
     :rules="[required, validOpeningDate]"
   />
 

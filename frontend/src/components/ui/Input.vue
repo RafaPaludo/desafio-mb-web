@@ -17,10 +17,7 @@
         :placeholder="placeholder"
         :required="required"
         class="input-element"
-        @input="[
-          checkRules(props.rules),
-          addMask($event)
-        ]"
+        @input="addMask($event)"
         @focusout="checkRules(props.rules)"
       />
       
@@ -90,6 +87,7 @@ const checkRules = (rules = []) => {
   error.value = "";
 
   for (const rule of rules) {
+    debugger
     const ruleErrorMessage = rule(model.value);
 
     if (ruleErrorMessage) {

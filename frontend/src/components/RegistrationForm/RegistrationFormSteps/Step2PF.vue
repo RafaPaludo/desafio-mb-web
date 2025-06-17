@@ -19,7 +19,7 @@
     v-model="store.birthday"
     ref="birthdayRef"
     label="Data de nascimento"
-    type="date"
+    mask="xx/xx/xxxx"
     :rules="[required, validBirthday]"
   />
 

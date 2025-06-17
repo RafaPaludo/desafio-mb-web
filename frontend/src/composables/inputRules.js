@@ -14,10 +14,23 @@ export function useInputRules () {
   const validPassword = (value) => value.length < 8 ? "Senha deve conter ao menos 8 caracteres." : null;
 
   const validBirthday = (value) => {
-    const dateNow = new Date().setHours(0,0,0,0) - (3 * 60 * 60* 1000); // Data da virada de hoje, menos as 3hrs de UTC.
-    const dateValue = new Date(value).getTime();
+    const valueSplitted = value.split('/');
+    const day = valueSplitted[0] || "";
+    const month = valueSplitted[1] || "";
+    const year = valueSplitted[2] || "";
 
-    return dateValue >= dateNow ? "Precisa ser menor que a data atual." : null;
+    if (day < 1 || day > 31) return "Revise o dia informado.";
+    if (month < 1 || month > 12) return "Revise o mês informado.";
+    if (year.length < 4) return "Revise o ano informado.";
+
+    const shortISODateFormat = `${year}-${month}-${day}`;
+    const dateValue = new Date(shortISODateFormat);
+
+    if (dateValue.toString() === "Invalid Date") return "Data inválida";
+
+    const dateNow = new Date().setHours(0,0,0,0) - (3 * 60 * 60* 1000); // Data da virada de hoje, menos as 3hrs de UTC.
+
+    return dateValue.getTime() >= dateNow ? "Precisa ser menor que a data atual." : null;
   }
   const validOpeningDate = validBirthday;
   
