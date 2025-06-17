@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const distPath = path.resolve(__dirname, '../frontend/dist');
 const validateUser = require('./validators/useValidator');
@@ -6,6 +7,7 @@ const validateUser = require('./validators/useValidator');
 const app = express();
 const port = 3000;
 
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

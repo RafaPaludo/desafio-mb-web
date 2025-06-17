@@ -45,11 +45,7 @@ O projeto é dividido em duas partes:
    git clone git@github.com:RafaPaludo/desafio-mb-web.git
    cd desafio-mb-web
 
-2. Instale as dependências:
-    ```bash
-     npm install
-
-3. Inicie o servidor:
+3. Faz o build do frontend e inicia o servidor:
      ```bash
      npm run start
 
@@ -76,7 +72,7 @@ Express
 ## API - Rotas disponíveis
 
 | Método | Rota | Descrição | 
-| --- | --- |
+| --- | --- | --- |
 | GET | /registration | Retorna o HTML com o formulário |
 | POST | /registration | Recebe os dados do formulário e processa |
 
