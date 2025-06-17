@@ -1,29 +1,21 @@
-# frontend
+# Frontend - Desafio MB Web
 
-This template should help get you started developing with Vue 3 in Vite.
+Este é o frontend da aplicação desenvolvida para o desafio técnico do Mercado Bitcoin. A interface foi criada com **Vue.js 3**, utilizando **Vite** como bundler e **Sass** para estilos.
 
-## Recommended IDE Setup
+## 🔧 Tecnologias
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- [Vue.js 3](https://vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [Sass (SCSS)](https://sass-lang.com/)
 
-## Customize configuration
+## ▶️ Executando localmente
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Pré-requisitos
 
-## Project Setup
+- Node.js instalado na máquina (preferencialmente versão 18+)
 
-```sh
-npm install
-```
+### Passo a passo
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. Acesse a pasta do frontend:
+   ```bash
+   cd frontend

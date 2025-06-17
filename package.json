@@ -1,0 +1,14 @@
+{
+  "name": "desafio-mb-web",
+  "version": "1.0.0",
+  "description": "## Preview",
+  "main": "index.js",
+  "scripts": {
+    "prepare:frontend": "cd ./frontend && npm install && npm run build && cd ..",
+    "prepare:backend": "cd ./server && npm install && npm run dev",
+    "start": "npm run prepare:frontend && npm run prepare:backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
