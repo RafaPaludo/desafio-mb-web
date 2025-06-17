@@ -1,11 +1,11 @@
 <template>
   <Input
     v-model="store.email"
-    :rules="[required, validEmail]"
     placeholder="contato@email.com"
     ref="emailRef"
     label="Endereço de e-mail"
     type="email"
+    :rules="[required, validEmail]"
   />
 
   <RadioGroup
@@ -34,5 +34,5 @@ const isValid = () => emailRef.value?.error ? false : true;
 defineExpose({
   disabled,
   isValid
-})
+});
 </script>

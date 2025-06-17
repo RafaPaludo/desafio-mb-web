@@ -29,8 +29,8 @@
     ref="companyPhoneRef"
     type="tel"
     placeholder="(00) 0000-0000"
-    mask="(xx) xxxx-xxxx"
     label="Telefone"
+    mask="(xx) xxxx-xxxx"
     :rules="[required, validCompanyPhone]"
   />  
 </template>
@@ -61,5 +61,5 @@ const isValid = () => {
 defineExpose({
   disabled,
   isValid
-})
+});
 </script>

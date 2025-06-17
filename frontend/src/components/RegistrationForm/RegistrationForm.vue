@@ -111,12 +111,13 @@ const nextStep = async () => {
 }
 
 /**
+ * Envia os dados do formulário para o backend e informa mensagem de sucesso ou falha.
  * 
- * @param store 
- * @param personTypeSelected 
+ * @param {object} formData - Dados do formulário.
+ * @param {'PF' | 'PJ'} personTypeSelected - Tipo de pessoa selecionada.
  */
-const postFormData = async (store, personTypeSelected) => {
-  const payload = mountFormPayload(store, personTypeSelected);
+const postFormData = async (formData, personTypeSelected) => {
+  const payload = mountFormPayload(formData, personTypeSelected);
 
   const { success, message } = await postForm(payload);
 
@@ -127,6 +128,7 @@ const postFormData = async (store, personTypeSelected) => {
     store.cpf = '';
     store.birthday = '';
     store.phone = '';
+    store.companyPhone = '';
     store.companyName = '';
     store.cnpj = '';
     store.openingDate = '';
@@ -140,11 +142,12 @@ const postFormData = async (store, personTypeSelected) => {
 }
 
 /**
+ * Monta a payload com os dados necessário baseado no tipo de pessoa escolhida. 
  * 
- * @param store 
- * @param personTypeSelected 
+ * @param {object} formData - Dados do formulário.
+ * @param {'PF' | 'PJ'} personTypeSelected - Tipo de pessoa selecionada.
  */
-const mountFormPayload = (store = {}, personTypeSelected = '') => {
+const mountFormPayload = (formData = {}, personTypeSelected = '') => {
   const commonFields = {
     email: store.email,
     password: store.password,
@@ -172,7 +175,7 @@ const mountFormPayload = (store = {}, personTypeSelected = '') => {
   };
 
   return fieldOptions[personTypeSelected?.toLowerCase()] || {};
-}
+};
 </script>
 
 <style scoped lang="scss">

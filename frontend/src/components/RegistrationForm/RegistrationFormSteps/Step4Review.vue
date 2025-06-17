@@ -46,5 +46,5 @@ const isValid = () => {
 
 defineExpose({
   isValid
-})
+});
 </script>

@@ -8,7 +8,6 @@
         {{ label }}
       </label>
       
-      
       <input
         v-model="model"
         :id="label"
@@ -36,7 +35,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onBeforeUnmount } from 'vue';
 
 import Alert from '@/components/ui/Alert.vue';
 
@@ -87,7 +86,6 @@ const checkRules = (rules = []) => {
   error.value = "";
 
   for (const rule of rules) {
-    debugger
     const ruleErrorMessage = rule(model.value);
 
     if (ruleErrorMessage) {
@@ -140,7 +138,9 @@ const togglePasswordVisibility = () => {
 
 defineExpose({
   error
-})
+});
+
+onBeforeUnmount(() => passwordVisible.value = false);
 </script>
 
 <style lang="scss">

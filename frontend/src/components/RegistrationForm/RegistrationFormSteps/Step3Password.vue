@@ -27,5 +27,5 @@ const isValid = () => passwordRef.value?.error ? false : true;
 defineExpose({
   disabled,
   isValid
-})
+});
 </script>
