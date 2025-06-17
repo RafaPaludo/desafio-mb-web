@@ -1,29 +1,35 @@
 <template>
   <Input
     v-model="store.name"
-    label="Nome"
     ref="nameRef"
+    placeholder="Digite seu nome"
+    label="Nome"
   />
 
   <Input
     v-model="store.cpf"
-    label="CPF"
     ref="cpfRef"
+    placeholder="000.000.000-00"
+    label="CPF"
+    mask="xxx.xxx.xxx-xx"
     :rules="[required, validCpf]"
   />
 
   <Input
     v-model="store.birthday"
+    ref="birthdayRef"
     label="Data de nascimento"
     type="date"
-    ref="birthdayRef"
     :rules="[required, validBirthday]"
   />
 
   <Input
     v-model="store.phone"
-    label="Telefone"
     ref="phoneRef"
+    label="Telefone"
+    placeholder="(00) 0 0000-0000"
+    type="tel"
+    mask="(xx) x xxxx-xxxx"
     :rules="[required, validPhone]"
   />  
 </template>

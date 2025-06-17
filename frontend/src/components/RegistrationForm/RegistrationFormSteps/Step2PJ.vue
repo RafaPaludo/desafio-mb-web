@@ -1,29 +1,36 @@
 <template>
   <Input
     v-model="store.companyName"
-    label="Razão Social"
     ref="companyNameRef"
+    placeholder="Digite o nome da empresa"
+    label="Razão Social"
   />
 
   <Input
     v-model="store.cnpj"
-    label="CNPJ"
     ref="cnpjRef"
+    placeholder="00.000.000/0000-00"
+    mask="xx.xxx.xxx/xxxx-xx"
+    label="CNPJ"
     :rules="[required, validCnpj]"
   />
 
   <Input
     v-model="store.openingDate"
-    label="Data de abertura"
-    type="date"
     ref="openingdateRef"
+    label="Data de abertura"
+    placeholder="00/00/0000"
+    type="date"
     :rules="[required, validOpeningDate]"
   />
 
   <Input
     v-model="store.companyPhone"
-    label="Telefone"
     ref="companyPhoneRef"
+    type="tel"
+    placeholder="(00) 0000-0000"
+    mask="(xx) xxxx-xxxx"
+    label="Telefone"
     :rules="[required, validCompanyPhone]"
   />  
 </template>
