@@ -80,7 +80,7 @@ const steps = computed(() => [
     heading: "Revise suas informações"
   },
 ]);
-const personTypeSelected = computed(() => store.selectedPersonType.toLocaleLowerCase());
+const personTypeSelected = computed(() => store.selectedPersonType.toLowerCase());
 const currentStepActive = computed(() => steps.value[currentStep.value].step);
 const totalSteps = computed(() => steps.value.length);
 const stepHeading = computed(() => steps.value[currentStep.value].heading);
@@ -171,7 +171,7 @@ const mountFormPayload = (store = {}, personTypeSelected = '') => {
     }
   };
 
-  return fieldOptions[personTypeSelected?.toLocaleLowerCase()] || {};
+  return fieldOptions[personTypeSelected?.toLowerCase()] || {};
 }
 </script>
 

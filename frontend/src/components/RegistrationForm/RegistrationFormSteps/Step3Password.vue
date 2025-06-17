@@ -1,9 +1,9 @@
 <template>
   <Input
     v-model="store.password"
+    ref="passwordRef"
     label="Sua senha"
     type="password"
-    ref="passwordRef"
     :rules="[required, validPassword]"
   />
 </template>

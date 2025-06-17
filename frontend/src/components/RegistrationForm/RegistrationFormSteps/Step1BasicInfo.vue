@@ -2,6 +2,7 @@
   <Input
     v-model="store.email"
     :rules="[required, validEmail]"
+    placeholder="contato@email.com"
     ref="emailRef"
     label="Endereço de e-mail"
     type="email"

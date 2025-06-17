@@ -1,9 +1,10 @@
 <template>
   <Input
     v-model="store.email"
-    label="Endereço de e-mail"
-    type="email"
     ref="emailRef"
+    label="Endereço de e-mail"
+    placeholder="contato@email.com"
+    type="email"
     :rules="[required, validEmail]"
   />
   <Step2PF v-if="personTypeSelected === 'pf'" ref="pfRef" />
@@ -29,7 +30,7 @@ const pfRef = ref({});
 const pjRef = ref({});
 const passwordRef = ref({});
 
-const personTypeSelected = computed(() => store.selectedPersonType.toLocaleLowerCase());
+const personTypeSelected = computed(() => store.selectedPersonType.toLowerCase());
 
 const isValid = () => {
   const personTypeRef = personTypeSelected.value === 'pf' ? pfRef : pjRef;
